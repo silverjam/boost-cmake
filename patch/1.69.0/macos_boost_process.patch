@@ -1,0 +1,46 @@
+diff -ru boost_1_69_0.old/boost/process/detail/posix/wait_for_exit.hpp boost_1_69_0.new/boost/process/detail/posix/wait_for_exit.hpp
+--- boost_1_69_0.old/boost/process/detail/posix/wait_for_exit.hpp	2018-12-05 11:58:21.000000000 -0800
++++ boost_1_69_0.new/boost/process/detail/posix/wait_for_exit.hpp	2019-04-07 01:20:44.000000000 -0700
+@@ -57,8 +57,8 @@
+ 
+     ::sigset_t  sigset;
+ 
+-    ::sigemptyset(&sigset);
+-    ::sigaddset(&sigset, SIGCHLD);
++    sigemptyset(&sigset);
++    sigaddset(&sigset, SIGCHLD);
+ 
+     auto get_timespec = 
+             [](const Duration & dur)
+@@ -84,7 +84,7 @@
+     do
+     {
+         auto ts = get_timespec(time_out - Clock::now());
+-        auto ret_sig = ::sigtimedwait(&sigset, nullptr, &ts);
++        auto ret_sig = sigtimedwait(&sigset, nullptr, &ts);
+         errno = 0;
+         ret = ::waitpid(p.pid, &status, WNOHANG);
+ 
+diff -ru boost_1_69_0.old/boost/process/detail/posix/wait_group.hpp boost_1_69_0.new/boost/process/detail/posix/wait_group.hpp
+--- boost_1_69_0.old/boost/process/detail/posix/wait_group.hpp	2018-12-05 11:58:21.000000000 -0800
++++ boost_1_69_0.new/boost/process/detail/posix/wait_group.hpp	2019-04-07 01:23:44.000000000 -0700
+@@ -61,8 +61,8 @@
+     ::sigset_t  sigset;
+     ::siginfo_t siginfo;
+ 
+-    ::sigemptyset(&sigset);
+-    ::sigaddset(&sigset, SIGCHLD);
++    sigemptyset(&sigset);
++    sigaddset(&sigset, SIGCHLD);
+ 
+     auto get_timespec = 
+             [](const Duration & dur)
+@@ -87,7 +87,7 @@
+     do
+     {
+         auto ts = get_timespec(time_out - Clock::now());
+-        ret = ::sigtimedwait(&sigset, nullptr, &ts);
++        ret = sigtimedwait(&sigset, nullptr, &ts);
+         errno = 0;
+         if ((ret == SIGCHLD) && (old_sig.sa_handler != SIG_DFL) && (old_sig.sa_handler != SIG_IGN))
+             old_sig.sa_handler(ret);
