@@ -3,8 +3,8 @@ project(Boost-CMake)
 
 option(BOOST_DISABLE_TESTS "Do not build test targets, even if building standalone" OFF)
 
-set(BOOST_URL "https://dl.bintray.com/boostorg/release/1.69.0/source/boost_1_69_0.tar.bz2" CACHE STRING "Boost download URL")
-set(BOOST_URL_SHA256 "8f32d4617390d1c2d16f26a27ab60d97807b35440d45891fa340fc2648b04406" CACHE STRING "Boost download URL SHA256 checksum")
+set(BOOST_URL "https://github.com/silverjam/boost-cmake/releases/download/v1.69.0%2Bsilverjam0/boost_1_69_0.tar.xz" CACHE STRING "Boost download URL")
+set(BOOST_URL_SHA256 "4fa84b07dcbaeffeb016b8452ccdd3222a0f6a0393829592c59d0243e04c90d4" CACHE STRING "Boost download URL SHA256 checksum")
 
 include(FetchContent)
 FetchContent_Declare(
