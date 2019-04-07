@@ -30,7 +30,7 @@ if(BOOST_IOSTREAMS_ENABLE_ZLIB)
       ${BOOST_SOURCE}/libs/iostreams/src/zlib.cpp
     )
     target_link_libraries(Boost_iostreams PRIVATE
-      ZLIB::ZLIB
+      ZLIB::zlib
     )
   endif()
 endif()
